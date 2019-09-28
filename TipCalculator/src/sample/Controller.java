@@ -52,7 +52,8 @@ public class Controller {
 
     // calculates and displays the tip and total amounts
     @FXML
-    private void calculateButtonPressed(ActionEvent event) {
+    private void calculateButtonPressed(ActionEven
+                                                    t event) {
         try {
             amount = new BigDecimal(amountTextField.getText());
             tip = amount.multiply(tipPercentage);
