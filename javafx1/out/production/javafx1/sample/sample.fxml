@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="250.0" style="-fx-border-color: BLACK;">
+         <children>
+            <Label alignment="TOP_CENTER" text="Label" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets right="70.0" top="150400.0" />
+               </VBox.margin></Label>
+         </children>
+      </VBox>
+      <VBox prefHeight="600.0" prefWidth="250.0" style="-fx-border-color: BLACK;" />
+      <VBox prefHeight="600.0" prefWidth="250.0" style="-fx-border-color: BLACK;" />
+   </children>
+</HBox>
