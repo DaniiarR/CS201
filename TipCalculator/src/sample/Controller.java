@@ -38,16 +38,33 @@ public class Controller {
     @FXML
     private TextField totalTextField;
 
+    @FXML
+    private TextField totalForEveryoneTextField;
+
+    @FXML
+    private TextField amountOfPeopleTextField;
+
+    BigDecimal amount;
+    int amountOfPeople;
+    BigDecimal tip;
+    BigDecimal total;
+    BigDecimal totalForEveryone;
+
     // calculates and displays the tip and total amounts
     @FXML
     private void calculateButtonPressed(ActionEvent event) {
         try {
-            BigDecimal amount = new BigDecimal(amountTextField.getText());
-            BigDecimal tip = amount.multiply(tipPercentage);
-            BigDecimal total = amount.add(tip);
-
+            amount = new BigDecimal(amountTextField.getText());
+            tip = amount.multiply(tipPercentage);
+            total = amount.add(tip);
+            amountOfPeople = Integer.parseInt(amountOfPeopleTextField.getText());
+            if (amountOfPeople > 0) {
+                totalForEveryone = total.divide(new BigDecimal(amountOfPeople));
+                totalForEveryoneTextField.setText(currency.format(totalForEveryone));
+            }
             tipTextField.setText(currency.format(tip));
             totalTextField.setText(currency.format(total));
+
         }
         catch (NumberFormatException ex) {
             amountTextField.setText("Enter amount");
@@ -68,7 +85,18 @@ public class Controller {
                             BigDecimal.valueOf(newValue.intValue() / 100.0);
                     tipPercentageLabel.setText(percent.format(tipPercentage));
 
+                    amount = new BigDecimal(amountTextField.getText());
+                    tip = amount.multiply(tipPercentage);
+                    tipTextField.setText(currency.format(tip));
                 }
         );
+
+        amountTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d{0,10}([\\.]\\d{0,4})?")) {
+                amountTextField.setText(oldValue);
+            }
+        });
+
+
     }
 }
