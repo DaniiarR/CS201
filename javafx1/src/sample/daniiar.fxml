@@ -5,12 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="250.0" style="-fx-border-color: grey;" HBox.hgrow="ALWAYS">
          <children>
@@ -24,7 +26,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="weightTextField" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="112.0" />
+                  <TextField fx:id="weightTextField" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="112.0" promptText="0-300" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -37,7 +39,7 @@
                         <Insets right="16.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="heightTextField" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="112.0" />
+                  <TextField fx:id="heightTextField" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="112.0" promptText="0 - 2.70" />
                </children>
             </HBox>
             <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -49,6 +51,11 @@
                   </Button>
                </children>
             </HBox>
+            <Label fx:id="illegalWeightLabel" text="Please enter a legal weight/height!" textFill="RED" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -56,27 +63,81 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="263.0" style="-fx-border-color: grey;" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fx:id="bmiImageView" fitHeight="292.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER" />
+            <ImageView fx:id="bmiImageView" fitHeight="292.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin></ImageView>
             <Label fx:id="bmiLabel" text="Your BMI is:">
                <font>
                   <Font size="17.0" />
                </font>
                <VBox.margin>
-                  <Insets top="16.0" />
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                </VBox.margin>
             </Label>
          </children>
       </VBox>
-      <VBox maxWidth="-Infinity" prefHeight="400.0" prefWidth="269.0" style="-fx-border-color: grey;" HBox.hgrow="ALWAYS">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Body mass index (BMI) is a value derived from the mass (weight) and height of a person. The BMI is defined as the body mass divided by the square of the body height, and is universally expressed in units of kg/m2, resulting from mass in kilograms and height in metres. " wrappingWidth="230.06884765625">
-               <font>
-                  <Font size="19.0" />
-               </font></Text>
-         </children>
+      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="333.0" style="visibility: true;" HBox.hgrow="ALWAYS">
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </padding>
+         <children>
+            <GridPane alignment="CENTER" gridLinesVisible="true" style="visibility: true;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="UNDERWEIGHT">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="NORMAL" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="OVERWEIGHT" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="OBESE" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="EXTREMELY OBESE" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="&lt;18.5" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="18.5 - 24.9" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="25 - 29.9" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="30 - 34.9" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="&gt;35" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin></Label>
+               </children>
+            </GridPane>
+         </children>
       </VBox>
    </children>
 </HBox>
